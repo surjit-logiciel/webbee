@@ -97,9 +97,9 @@ class EventsController extends BaseController
      */
 
     public function getEventsWithWorkshops() {
-        $webshop = Event::with('workshops')->get();
+        $events = Event::with('workshops')->get();
 
-        return $webshop;
+        return $events;
     }
 
 
