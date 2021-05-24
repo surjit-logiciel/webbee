@@ -180,7 +180,7 @@ class EventsController extends BaseController
     public function getFutureEventsWithWorkshops() {
         $events = Event::join('workshops', function($query){
             $query->on('events.id', '=', 'workshops.event_id');
-        })->with('workshops')->where(\DB::raw('events.start', '>', 'workshops.start'))->select('events.*')->distinct('events.id')->get();
+        })->with('workshops')->havingRaw('events.created_at > 0')->select('events.*')->distinct('events.id')->get();
 
         return $events;
     }
